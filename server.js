@@ -2,23 +2,22 @@ import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import multer from 'multer';
-import cloudinary from './config/cloudinary.js';
 import { v2 as cloudinaryV2 } from 'cloudinary';
 import streamifier from 'streamifier';
 
-// Configuração do Prisma
+
 const prisma = new PrismaClient();
 
-// Configuração do Express
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Configuração do Multer
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Função para fazer upload para o Cloudinary
+
 const uploadToCloudinary = (file) => {
   return new Promise((resolve, reject) => {
     const stream = cloudinaryV2.uploader.upload_stream({ folder: 'composicoes' }, (error, result) => {
@@ -84,7 +83,7 @@ app.delete('/composicoes/:id', async (req, res) => {
   }
 });
 
-// Configuração da porta do servidor
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

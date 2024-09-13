@@ -22,4 +22,3 @@ model Composicoes {
   comoJogar   String
   itens       String
 }
-//depois rodar o comando npx prisma db push 
